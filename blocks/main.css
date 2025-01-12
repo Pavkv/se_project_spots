@@ -1,0 +1,10 @@
+.main {
+    justify-content: center;
+}
+
+@media screen and (max-width: 1440px){
+    .main {
+        width: 1280px;
+        padding: 20px 80px 20px;
+    }
+}

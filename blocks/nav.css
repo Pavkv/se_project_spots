@@ -13,15 +13,15 @@
 }
 
 .nav__link-icon {
-    width: .625em;
-    height: 1em;
+    width: 10px;
+    height: 16px;
 }
 
 .nav__link-text {
     font-family: 'DM Mono', serif;
-    font-size: 1.25em;
+    font-size: 1.25rem;
     font-weight: 500;
-    line-height: 1.3em;
+    line-height: 1.625rem;
     margin: 0;
-    padding: .5em 0 .5em .4em;
+    padding: 10px 0 10px 8px;
 }

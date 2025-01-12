@@ -2,5 +2,12 @@
     font-family: 'DM Mono';
     font-style: normal;
     font-weight: 500;
-    src: url("fonts/DMMono-Medium.ttf") format('truetype');
+    src: url('fonts/DMMono-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins', serif;
+    font-style: normal;
+    font-weight: 500;
+    src: url('fonts/Poppins-Medium.ttf') format('truetype');
 }

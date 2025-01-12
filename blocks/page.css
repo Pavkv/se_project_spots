@@ -1,6 +1,12 @@
 .page {
     background-color: #FCF5E5;
     z-index: -1;
+    font-family: 'Poppins', serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    color: #212121;
+    border-radius: 8px;
 }
 
 @media screen and (max-width: 1440px){

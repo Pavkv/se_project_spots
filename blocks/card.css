@@ -1,0 +1,16 @@
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__photo {
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 1440px){
+    .card__photo {
+        width: 413px;
+        height: 413px;
+    }
+}
