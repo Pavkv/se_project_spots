@@ -1,0 +1,27 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    background-color: #FFF;
+    z-index: 1;
+}
+
+.nav__link {
+    display: flex;
+    text-decoration: none;
+    color: #212121;
+    align-items: center;
+}
+
+.nav__link-icon {
+    width: .625em;
+    height: 1em;
+}
+
+.nav__link-text {
+    font-family: 'DM Mono', serif;
+    font-size: 1.25em;
+    font-weight: 500;
+    line-height: 1.3em;
+    margin: 0;
+    padding: .5em 0 .5em .4em;
+}

@@ -1,0 +1,10 @@
+.page {
+    background-color: #FCF5E5;
+    z-index: -1;
+}
+
+@media screen and (max-width: 1440px){
+    .page {
+        width: 1440px;
+    }
+}
