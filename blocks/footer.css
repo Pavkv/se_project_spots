@@ -1,0 +1,18 @@
+.footer {
+    position: relative;
+}
+
+.footer__copyright {
+    font-weight: 400;
+    opacity: 70%;
+    margin: 0;
+    text-align: center;
+}
+
+@media screen and (min-width: 1320px) {
+    .footer {
+        width: 1280px;
+        padding: 60px 80px;
+        border-bottom-width: 1280px;
+    }
+}
