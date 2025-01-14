@@ -1,5 +1,8 @@
 # SPOTS - Interactive Social Media App
 
+![image](https://github.com/user-attachments/assets/75cf42d7-dfcf-4e3f-8beb-ba00b0805ca6)
+
+
 ## Description
 SPOTS is an interactive social media web application designed to connect users through photo sharing and social engagement. Users can upload and remove photos, like others' photos, and personalize their profiles. The app offers a visually appealing interface with a focus on responsiveness and accessibility.
 
