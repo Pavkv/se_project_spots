@@ -1,4 +1,4 @@
-# SPOTS - Interactive Social Media App
+# SPOTLIGHT - Interactive Social Media App
 
 ![image](https://github.com/user-attachments/assets/75cf42d7-dfcf-4e3f-8beb-ba00b0805ca6)
 
