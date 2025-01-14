@@ -3,7 +3,29 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px 20px;
+    grid-row-gap: 20px;
+}
+
+@media screen and (min-width: 1320px){
+    .photos__list {
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 40px;
+    }
+}
+
+@media screen and (min-width: 880px) and (max-width: 1319px) {
+    .photos__list {
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 40px;
+    }
+}
+
+@media screen and (max-width: 879px){
+    .photos__list {
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+    }
 }

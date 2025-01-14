@@ -1,16 +1,50 @@
 .card {
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
 
 .card__photo {
-    border-radius: 8px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
+    border-radius: 8px;
 }
 
-@media screen and (max-width: 1440px){
-    .card__photo {
-        width: 413px;
-        height: 413px;
+.card__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.card__like-icon {
+    opacity: 40%;
+    transition: opacity .3s ease-in-out;
+}
+
+.card__like-icon:hover {
+    opacity: 100%;
+}
+
+.card__text {
+    margin: 0;
+}
+
+@media screen and (min-width: 880px){
+    .card__like-icon {
+        width: 23px;
+        height: 20px;
+    }
+
+    .card__text {
+        font-size: 1.25rem;
+        line-height: 1.2;
+    }
+}
+
+@media screen and (max-width: 879px){
+    .card__like-icon {
+        width: 20px;
+        height: 18px;
     }
 }

@@ -1,5 +1,6 @@
 .footer {
     position: relative;
+    padding: 60px 0;
 }
 
 .footer__copyright {
@@ -9,10 +10,3 @@
     text-align: center;
 }
 
-@media screen and (min-width: 1320px) {
-    .footer {
-        width: 1280px;
-        padding: 60px 80px;
-        border-bottom-width: 1280px;
-    }
-}

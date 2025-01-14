@@ -18,16 +18,14 @@
 	<link rel="icon" href="favicon.ico"/>
 </head>
 <body>
-		<nav class="nav">
-			<a href="#" class="nav__link">
-				<img
+		<div class="logo">
+			<img
 					src="images/menu_spots.svg"
 					alt="Menu down button"
-					class="nav__link-icon"
-				/>
-				<p class="nav__link-text">SPOTS</p>
-			</a>
-		</nav>
+					class="logo__icon"
+			/>
+			<p class="logo__text">SPOTS</p>
+		</div>
 	<div class="page">
 		<header class="header">
 			<div class="header__user">
@@ -44,17 +42,17 @@
 						<p class="header__text header__text_description">Civil Aviator</p>
 					</li>
 					<li class="header__list-item">
-						<div class="header__edit-profile">
+						<button class="header__edit-profile">
 							<img
 								src="images/header_edit.svg"
 								alt="Edit symbol button"
-								class="header__edit-symbol"
+								class="header__edit-icon"
 							/>
-							<button class="header__button-text header__edit-text">Edit Profile</button>
-						</div>
+							Edit Profile
+						</button>
 					</li>
 				</ul>
-				<button class="header__button-text header__new-post">
+				<button class="header__new-post">
 					<img
 						src="images/header_new-post.svg"
 						alt="Add new post"
@@ -75,7 +73,7 @@
 								class="card__photo"
 								/>
 							<div class="card__info">
-								<p class="card__text"></p>
+								<p class="card__text">Val Thorens</p>
 								<img
 									src="images/card_like.svg"
 									alt="Like the photo"
@@ -92,7 +90,7 @@
 								class="card__photo"
 							/>
 							<div class="card__info">
-								<p class="card__text"></p>
+								<p class="card__text">Restaurant terrace</p>
 								<img
 									src="images/card_like.svg"
 									alt="Like the photo"
@@ -109,7 +107,7 @@
 								class="card__photo"
 							/>
 							<div class="card__info">
-								<p class="card__text"></p>
+								<p class="card__text">An outdoor cafe</p>
 								<img
 									src="images/card_like.svg"
 									alt="Like the photo"
@@ -126,7 +124,7 @@
 								class="card__photo"
 							/>
 							<div class="card__info">
-								<p class="card__text"></p>
+								<p class="card__text">A very long bridge, over the forest...</p>
 								<img
 									src="images/card_like.svg"
 									alt="Like the photo"
@@ -143,7 +141,7 @@
 								class="card__photo"
 							/>
 							<div class="card__info">
-								<p class="card__text"></p>
+								<p class="card__text">Tunnel with morning light</p>
 								<img
 									src="images/card_like.svg"
 									alt="Like the photo"
@@ -160,7 +158,7 @@
 								class="card__photo"
 							/>
 							<div class="card__info">
-								<p class="card__text"></p>
+								<p class="card__text">Mountain house</p>
 								<img
 									src="images/card_like.svg"
 									alt="Like the photo"
@@ -172,7 +170,9 @@
 				</ul>
 			</section>
 		</main>
-		<footer class="footer"></footer>
+		<footer class="footer">
+			<p class="footer__copyright">2025 © Spots by Pasha Zobov</p>
+		</footer>
 	</div>
 </body>
 </html>

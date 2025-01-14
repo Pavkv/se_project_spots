@@ -1,5 +1,5 @@
 .header {
-    justify-content: center;
+    margin: 0 auto;
     position: relative;
 }
 
@@ -13,6 +13,7 @@
 
 .header__user {
     display: flex;
+    align-items: flex-end;
 }
 
 .header__list {
@@ -24,36 +25,52 @@
     margin: 0;
 }
 
-.header__button-text {
-    font-size: 1rem;
+.header__text_username {
     line-height: 1;
-    font-weight: 500;
+}
+
+.header__text_description {
+    line-height: 1;
+    opacity: 70%;
 }
 
 .header__edit-profile {
     display: flex;
-}
-
-.header__edit-symbol {
-    opacity: 70%;
-}
-
-.header__edit-text {
+    cursor: pointer;
     background: none;
     border: none;
     padding: 0;
-    margin-left: 8px;
+    gap: 8px;
     opacity: 70%;
+    transition: opacity .5s ease-in-out;
+}
+
+.header__edit-icon {
+    opacity: inherit;
+}
+
+.header__edit-profile:hover {
+    opacity: 100%;
 }
 
 .header__new-post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #212121;
     border: none;
     border-radius: 8px;
     color: #FCF5E5;
     padding: 0;
     font-weight: 500;
-    line-height: 1;
+    transition: opacity .7s ease-in-out;
+    cursor: pointer;
+    height: 52px;
+    gap: 8px;
+}
+
+.header__new-post:hover {
+    opacity: 80%;
 }
 
 .header__new-post-icon {
@@ -61,15 +78,14 @@
     height: 12px;
 }
 
-@media screen and (max-width: 1440px){
+@media screen and (min-width: 880px){
     .header {
-        width: 1280px;
         padding: 34px 80px 20px;
-        border-bottom-width: 1280px;
+        max-width: 1440px;
     }
 
     .header::after {
-        width: 1280px;
+        width: calc(100% - 160px);
     }
 
     .header__avatar {
@@ -78,7 +94,6 @@
     }
 
     .header__list {
-        width: 420px;
         margin: 0 0 0 20px;
     }
 
@@ -88,18 +103,57 @@
 
     .header__text_username {
         font-size: 2rem;
-        line-height: 2rem;
-    }
-
-    .header__text_description {
-        font-size: 1rem;
-        line-height: 1rem;
-        opacity: 70%;
     }
 
     .header__new-post {
-        margin: 138px 0 0 501px;
+        margin: 138px 0 0 auto;
         width: 149px;
-        height: 52px;
+    }
+}
+
+@media screen and (max-width: 879px){
+    .header {
+        padding: 20px 16px;
+        max-width: 400px;
+    }
+
+    .header::after {
+        width: calc(100% - 32px);
+    }
+
+    .header__avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .header__user {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header__list {
+        margin: 12px 0 0;
+    }
+
+    .header__text {
+        text-align: center;
+    }
+
+    .header__list-item:nth-child(2) {
+        margin: 6px 0 32px;
+    }
+
+    .header__text_username {
+        font-size: 1.25rem;
+
+    }
+
+    .header__edit-profile {
+        margin: 0 auto;
+    }
+
+    .header__new-post {
+        margin: 20px 0 0;
+        width: 288px;
     }
 }
