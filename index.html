@@ -1,178 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<meta
-		name="description"
-		content="This is an interactive social media web application where users can add and remove photos,
-		like photos of other users, and make a few minor adjustments to their profile."
-	/>
-	<meta name="author" content="Pasha Zobov"/>
-	<meta
-		name="keywords"
-		content="Sports, social media, photo sharing, personal account, connect with other users"
-	/>
-	<title>Sports</title>
-	<link rel="stylesheet" href="./pages/index.css"/>
-	<link rel="icon" href="favicon.ico"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Interactive social media web application for photo sharing and profile adjustments."/>
+  <meta name="author" content="Pasha Zobov"/>
+  <meta name="keywords" content="Sports, social media, photo sharing, personal account, connect with other users"/>
+  <title>Sports</title>
+  <link rel="stylesheet" href="./pages/index.css"/>
+  <link rel="icon" href="favicon.ico"/>
 </head>
 <body>
-		<div class="logo">
-			<img
-					src="images/menu_spots.svg"
-					alt="Menu down button"
-					class="logo__icon"
-			/>
-			<p class="logo__text">SPOTS</p>
-		</div>
-	<div class="page">
-		<header class="header">
-			<div class="header__user">
-				<img
-					src="images/default_avatar.png"
-					alt="User Avatar"
-					class="header__avatar"
-				/>
-				<ul class="header__list">
-					<li class="header__list-item">
-						<p class="header__text header__text_username">Bessie Coleman</p>
-					</li>
-					<li class="header__list-item">
-						<p class="header__text header__text_description">Civil Aviator</p>
-					</li>
-					<li class="header__list-item">
-						<button class="header__edit-profile">
-							<img
-								src="images/header_edit.svg"
-								alt="Edit symbol button"
-								class="header__edit-icon"
-							/>
-							Edit Profile
-						</button>
-					</li>
-				</ul>
-				<button class="header__new-post">
-					<img
-						src="images/header_new-post.svg"
-						alt="Add new post"
-						class="header__new-post-icon"
-						/>
-					New Post
-				</button>
-			</div>
-		</header>
-		<main class="main">
-			<section class="photos">
-				<ul class="photos__list">
-					<li class="photos__list-item">
-						<div class="card">
-							<img
-								src="images/1-photo-by-moritz-feldmann-from-pexels.jpg"
-								alt="Ski resort view"
-								class="card__photo"
-								/>
-							<div class="card__info">
-								<p class="card__text">Val Thorens</p>
-								<img
-									src="images/card_like.svg"
-									alt="Like the photo"
-									class="card__like-icon"
-									/>
-							</div>
-						</div>
-					</li>
-					<li class="photos__list-item">
-						<div class="card">
-							<img
-								src="images/2-photo-by-ceiline-from-pexels.jpg"
-								alt="Restaurant view"
-								class="card__photo"
-							/>
-							<div class="card__info">
-								<p class="card__text">Restaurant terrace</p>
-								<img
-									src="images/card_like.svg"
-									alt="Like the photo"
-									class="card__like-icon"
-								/>
-							</div>
-						</div>
-					</li>
-					<li class="photos__list-item">
-						<div class="card">
-							<img
-								src="images/3-photo-by-tubanur-dogan-from-pexels.jpg"
-								alt="An outdoor cafe view"
-								class="card__photo"
-							/>
-							<div class="card__info">
-								<p class="card__text">An outdoor cafe</p>
-								<img
-									src="images/card_like.svg"
-									alt="Like the photo"
-									class="card__like-icon"
-								/>
-							</div>
-						</div>
-					</li>
-					<li class="photos__list-item">
-						<div class="card">
-							<img
-								src="images/4-photo-by-maurice-laschet-from-pexels.jpg"
-								alt="Forest wooden bridge view"
-								class="card__photo"
-							/>
-							<div class="card__info">
-								<p class="card__text">A very long bridge, over the forest...</p>
-								<img
-									src="images/card_like.svg"
-									alt="Like the photo"
-									class="card__like-icon"
-								/>
-							</div>
-						</div>
-					</li>
-					<li class="photos__list-item">
-						<div class="card">
-							<img
-								src="images/5-photo-by-van-anh-nguyen-from-pexels.jpg"
-								alt="Long hallway view"
-								class="card__photo"
-							/>
-							<div class="card__info">
-								<p class="card__text">Tunnel with morning light</p>
-								<img
-									src="images/card_like.svg"
-									alt="Like the photo"
-									class="card__like-icon"
-								/>
-							</div>
-						</div>
-					</li>
-					<li class="photos__list-item">
-						<div class="card">
-							<img
-								src="images/6-photo-by-moritz-feldmann-from-pexels.jpg"
-								alt="Winter cabin view"
-								class="card__photo"
-							/>
-							<div class="card__info">
-								<p class="card__text">Mountain house</p>
-								<img
-									src="images/card_like.svg"
-									alt="Like the photo"
-									class="card__like-icon"
-								/>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</section>
-		</main>
-		<footer class="footer">
-			<p class="footer__copyright">2025 © Spots by Pasha Zobov</p>
-		</footer>
-	</div>
+  <div class="logo">
+    <img src="images/menu_spots.svg" alt="Menu down button" class="logo__icon"/>
+    <p class="logo__text">SPOTS</p>
+  </div>
+  <div class="page">
+    <header class="header">
+      <div class="header__user">
+        <img src="images/default_avatar.png" alt="User Avatar" class="header__avatar"/>
+        <ul class="header__list">
+          <li class="header__list-item">
+            <p class="header__text header__text--username">Bessie Coleman</p>
+          </li>
+          <li class="header__list-item">
+            <p class="header__text header__text--description">Civil Aviator</p>
+          </li>
+          <li class="header__list-item">
+            <button class="header__edit-profile">
+              <img src="images/header_edit.svg" alt="Edit symbol button" class="header__edit-icon"/>
+              Edit Profile
+            </button>
+          </li>
+        </ul>
+        <button class="header__new-post">
+          <img src="images/header_new-post.svg" alt="Add new post" class="header__new-post-icon"/>
+          New Post
+        </button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="photos">
+        <ul class="photos__list">
+          <li class="photos__list-item">
+            <div class="card">
+              <img src="images/1-photo-by-moritz-feldmann-from-pexels.jpg" alt="Ski resort view" class="card__photo"/>
+              <div class="card__info">
+                <p class="card__text">Val Thorens</p>
+                <img src="images/card_like.svg" alt="Like the photo" class="card__like-icon"/>
+              </div>
+            </div>
+          </li>
+          <li class="photos__list-item">
+            <div class="card">
+              <img src="images/2-photo-by-ceiline-from-pexels.jpg" alt="Restaurant view" class="card__photo"/>
+              <div class="card__info">
+                <p class="card__text">Restaurant terrace</p>
+                <img src="images/card_like.svg" alt="Like the photo" class="card__like-icon"/>
+              </div>
+            </div>
+          </li>
+          <li class="photos__list-item">
+            <div class="card">
+              <img src="images/3-photo-by-tubanur-dogan-from-pexels.jpg" alt="An outdoor cafe view" class="card__photo"/>
+              <div class="card__info">
+                <p class="card__text">An outdoor cafe</p>
+                <img src="images/card_like.svg" alt="Like the photo" class="card__like-icon"/>
+              </div>
+            </div>
+          </li>
+          <li class="photos__list-item">
+            <div class="card">
+              <img src="images/4-photo-by-maurice-laschet-from-pexels.jpg" alt="Forest wooden bridge view" class="card__photo"/>
+              <div class="card__info">
+                <p class="card__text">A very long bridge, over the forest and through the woods</p>
+                <img src="images/card_like.svg" alt="Like the photo" class="card__like-icon"/>
+              </div>
+            </div>
+          </li>
+          <li class="photos__list-item">
+            <div class="card">
+              <img src="images/5-photo-by-van-anh-nguyen-from-pexels.jpg" alt="Long hallway view" class="card__photo"/>
+              <div class="card__info">
+                <p class="card__text">Tunnel with morning light</p>
+                <img src="images/card_like.svg" alt="Like the photo" class="card__like-icon"/>
+              </div>
+            </div>
+          </li>
+          <li class="photos__list-item">
+            <div class="card">
+              <img src="images/6-photo-by-moritz-feldmann-from-pexels.jpg" alt="Winter cabin view" class="card__photo"/>
+              <div class="card__info">
+                <p class="card__text">Mountain house</p>
+                <img src="images/card_like.svg" alt="Like the photo" class="card__like-icon"/>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">2025 © Spots by Pasha Zobov</p>
+    </footer>
+  </div>
 </body>
 </html>

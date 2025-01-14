@@ -28,6 +28,11 @@
 
 .card__text {
     margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 @media screen and (min-width: 880px){
