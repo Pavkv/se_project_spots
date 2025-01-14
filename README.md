@@ -1,21 +1,27 @@
-# Project 3: Spots
+# SPOTS - Interactive Social Media App
 
-### Overview  
+![image](https://github.com/user-attachments/assets/75cf42d7-dfcf-4e3f-8beb-ba00b0805ca6)
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+
+## Description
+SPOTS is an interactive social media web application designed to connect users through photo sharing and social engagement. Users can upload and remove photos, like others' photos, and personalize their profiles. The app offers a visually appealing interface with a focus on responsiveness and accessibility.
+
+## Features
+- **Photo Sharing**: Upload, view, and remove photos seamlessly.
+- **Likes System**: Interact with photos using the like button.
+- **Profile Management**: Update user profiles and personalize your experience.
+- **Responsive Design**: Enjoy a consistent experience across devices.
+
+## Technologies and Techniques Used
+- **HTML5**: Semantic structure of the application.
+- **CSS3**: Styling using Flexbox, Grid, and responsive design principles.
+- **BEM Methodology**: Maintainable and modular CSS structure.
+- **Media Queries**: Adaptive design for varying screen sizes.
+
+## Author
+Pasha Zobov  
+2025 © Spots
+
+---
+
+Feel free to add suggestions or submit issues via GitHub.
