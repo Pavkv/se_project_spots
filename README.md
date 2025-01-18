@@ -18,6 +18,12 @@ SPOTS is an interactive social media web application designed to connect users t
 - **BEM Methodology**: Maintainable and modular CSS structure.
 - **Media Queries**: Adaptive design for varying screen sizes.
 
+## Video Presentation
+For a detailed walkthrough of the SPOTLIGHT project, watch the video below:
+[![Video Title](https://github.com/user-attachments/assets/75cf42d7-dfcf-4e3f-8beb-ba00b0805ca6)](https://youtu.be/sfDVrkqgOJE?si=LKs_qLudC_I4wd-G)
+
+(Click on the thumbnail to open the video)
+
 ## Author
 Pasha Zobov  
 2025 © Spots
