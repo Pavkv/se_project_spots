@@ -6,6 +6,11 @@
 ## Description
 SPOTS is an interactive social media web application designed to connect users through photo sharing and social engagement. Users can upload and remove photos, like others' photos, and personalize their profiles. The app offers a visually appealing interface with a focus on responsiveness and accessibility.
 
+## Web Link
+https://pavkv.github.io/se_project_spots/
+
+(Click on the link to get access to the website)
+
 ## Features
 - **Photo Sharing**: Upload, view, and remove photos seamlessly.
 - **Likes System**: Interact with photos using the like button.

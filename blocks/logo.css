@@ -13,7 +13,7 @@
 }
 
 .logo__text {
-    font-family: 'DM Mono', serif;
+    font-family: 'DM Mono', Arial, sans-serif;
     font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.3;
