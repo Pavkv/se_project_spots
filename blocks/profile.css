@@ -1,0 +1,148 @@
+.profile {
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    padding: 34px 80px 20px;
+    max-width: 1440px;
+}
+
+.profile::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    background-color: #21212166;
+    width: calc(100% - 160px);
+}
+
+.profile__info {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 20px;
+}
+
+.profile__info-item {
+    max-width: 420px;
+}
+
+.profile__info-item:nth-child(2) {
+    margin: 12px 0 auto;
+}
+
+.profile__avatar {
+    object-fit: cover;
+}
+
+.profile__text {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1;
+}
+
+.profile__text_type_username {
+    font-size: 2rem;
+}
+
+.profile__text_type_description {
+    opacity: 70%;
+}
+
+.profile__edit-profile {
+    display: flex;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    gap: 8px;
+    opacity: 70%;
+    transition: opacity .5s ease-in-out;
+}
+
+.profile__edit-button {
+    opacity: inherit;
+}
+
+.profile__edit-profile:hover {
+    opacity: 100%;
+}
+
+.profile__new-post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212121;
+    border: none;
+    border-radius: 8px;
+    color: #FCF5E5;
+    padding: 0;
+    font-weight: 500;
+    transition: opacity .7s ease-in-out;
+    cursor: pointer;
+    height: 52px;
+    gap: 8px;
+    margin: 138px 0 0 auto;
+    width: 149px;
+}
+
+.profile__new-post:hover {
+    opacity: 80%;
+}
+
+.profile__new-post-icon {
+    width: 12px;
+    height: 12px;
+}
+
+@media screen and (max-width: 879px){
+    .profile {
+        padding: 20px 16px;
+        max-width: 400px;
+        flex-direction: column;
+    }
+
+    .profile::after {
+        width: calc(100% - 32px);
+    }
+
+    .profile__avatar {
+        width: 80px;
+        height: 80px;
+        align-self: center;
+    }
+
+    .profile__info {
+        flex-direction: column;
+        align-items: center;
+        margin: 12px 0 0;
+    }
+
+    .profile__text {
+        text-align: center;
+    }
+
+    .profile__info-item:nth-child(2) {
+        margin: 6px 0 32px;
+    }
+
+    .profile__text--username {
+        font-size: 1.25rem;
+
+    }
+
+    .profile__edit-profile {
+        margin: 0 auto;
+    }
+
+    .profile__new-post {
+        margin: 20px 0 0;
+        width: 100%;
+        max-width: 288px;
+        align-self: center;
+    }
+}

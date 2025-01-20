@@ -6,7 +6,8 @@
 
 .card__photo {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
+    height: 413px;
     object-fit: cover;
     border-radius: 8px;
 }
@@ -17,17 +18,27 @@
     align-items: flex-end;
 }
 
-.card__like-icon {
+.card__like-button {
+    background-image: url("../images/card_like.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 23px;
+    height: 20px;
     opacity: 40%;
     transition: opacity .3s ease-in-out;
+    cursor: pointer;
+    border: none;
+    padding: 0;
 }
 
-.card__like-icon:hover {
+.card__like-button:hover {
     opacity: 100%;
 }
 
 .card__text {
     margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.2;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -35,21 +46,20 @@
     overflow: hidden;
 }
 
-@media screen and (min-width: 880px){
-    .card__like-icon {
-        width: 23px;
-        height: 20px;
+@media screen and (max-width: 879px){
+    .card__photo {
+        height: 288px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .card__like-button {
+        width: 20px;
+        height: 18px;
     }
 
     .card__text {
-        font-size: 1.25rem;
-        line-height: 1.2;
-    }
-}
-
-@media screen and (max-width: 879px){
-    .card__like-icon {
-        width: 20px;
-        height: 18px;
+        font-size: 1rem;
+        line-height: 1;
     }
 }

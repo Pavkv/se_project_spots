@@ -1,6 +1,8 @@
 .main {
     position: relative;
     margin: 0 auto;
+    padding: 20px 80px 40px;
+    max-width: 1440px;
 }
 
 .main::after {
@@ -9,17 +11,7 @@
     bottom: 0;
     height: 1px;
     background-color: #21212166;
-}
-
-@media screen and (min-width: 880px){
-    .main {
-        padding: 20px 80px 40px;
-        max-width: 1440px;
-    }
-
-    .main::after {
-        width: calc(100% - 160px);
-    }
+    width: calc(100% - 160px);
 }
 
 @media screen and (max-width: 879px){
