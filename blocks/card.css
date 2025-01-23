@@ -18,6 +18,10 @@
     align-items: flex-end;
 }
 
+.card__text {
+    font-weight: 500;
+}
+
 .card__like-button {
     background-image: url("../images/card_like.svg");
     background-size: contain;
@@ -44,6 +48,7 @@
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
+    width: 30ch;
 }
 
 @media screen and (max-width: 879px){

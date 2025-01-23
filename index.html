@@ -93,6 +93,25 @@
     <footer class="footer">
       <p class="footer__copyright">2025 © Spots by Pasha Zobov</p>
     </footer>
+    <div class="modal modal_opened">
+      <div class="modal__overlay">
+        <div class="modal__container">
+          <div class="modal__header">
+            <h2 class="modal__header-text">Edit Profile</h2>
+            <button type="button" class="modal__header-button"></button>
+          </div>
+          <form class="modal__form">
+            <fieldset class="modal__form-fieldset">
+              <label for="name" class="modal__form-label">Name</label>
+              <input type="text" class="modal__form-input" id="name" placeholder="Name"/>
+              <label for="description" class="modal__form-label">Description</label>
+              <input type="text" class="modal__form-input" id="description" placeholder="Description"/>
+              <button type="submit" class="modal__form-button">Save</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 <script src="./scripts/index.js" defer></script>
 </body>
