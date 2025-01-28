@@ -45,7 +45,7 @@
     margin: 0;
 }
 
-.modal__header-button {
+.modal__header-closebutton {
     background-image: url("../images/close-icon.svg");
     background-repeat: no-repeat;
     background-size: contain;
@@ -99,7 +99,7 @@
         font-size: 0.75rem;
         line-height: 0.75;
     }
-    .modal__header-button {
+    .modal__header-closebutton {
         width: 0.9rem;
         height: 0.9rem;
     }

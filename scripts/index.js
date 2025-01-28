@@ -24,3 +24,16 @@ const initialCards = {
         link: "../images/photo6-Riviera.jpg"
     }
 }
+
+let editButton = document.querySelector(".profile__edit-profile");
+let editModal = document.querySelector("#edit-modal");
+
+editButton.addEventListener("click", function(){
+    editModal.classList.add("modal_opened");
+});
+
+let editModalClose = editModal.querySelector(".modal__header-closebutton");
+
+editModalClose.addEventListener("click", function() {
+    editModal.classList.remove("modal_opened");
+})
