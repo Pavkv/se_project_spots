@@ -26,6 +26,7 @@
     background-image: url("../images/card_like.svg");
     background-size: contain;
     background-repeat: no-repeat;
+    background-color: transparent;
     width: 23px;
     height: 20px;
     opacity: 40%;
