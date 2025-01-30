@@ -33,60 +33,17 @@
       </section>
       <section class="photos">
         <ul class="photos__list">
-          <li class="photos__list-item">
-            <div class="card">
-              <img src="images/1-photo-by-moritz-feldmann-from-pexels.jpg" alt="Ski resort view" class="card__photo"/>
-              <div class="card__info">
-                <h2 class="card__text">Val Thorens</h2>
-                <button class="card__like-button" type="button"></button>
+          <template id="card-template">
+            <li class="photos__list-item">
+              <div class="card">
+                <img class="card__photo"/>
+                <div class="card__info">
+                  <h2 class="card__text"></h2>
+                  <button class="card__like-button" type="button"></button>
+                </div>
               </div>
-            </div>
-          </li>
-          <li class="photos__list-item">
-            <div class="card">
-              <img src="images/2-photo-by-ceiline-from-pexels.jpg" alt="Restaurant view" class="card__photo"/>
-              <div class="card__info">
-                <h2 class="card__text">Restaurant terrace</h2>
-                <button class="card__like-button" type="button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="photos__list-item">
-            <div class="card">
-              <img src="images/3-photo-by-tubanur-dogan-from-pexels.jpg" alt="An outdoor cafe view" class="card__photo"/>
-              <div class="card__info">
-                <h2 class="card__text">An outdoor cafe</h2>
-                <button class="card__like-button" type="button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="photos__list-item">
-            <div class="card">
-              <img src="images/4-photo-by-maurice-laschet-from-pexels.jpg" alt="Forest wooden bridge view" class="card__photo"/>
-              <div class="card__info">
-                <h2 class="card__text">A very long bridge, over the forest and through the woods</h2>
-                <button class="card__like-button" type="button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="photos__list-item">
-            <div class="card">
-              <img src="images/5-photo-by-van-anh-nguyen-from-pexels.jpg" alt="Long hallway view" class="card__photo"/>
-              <div class="card__info">
-                <h2 class="card__text">Tunnel with morning light</h2>
-                <button class="card__like-button" type="button"></button>
-              </div>
-            </div>
-          </li>
-          <li class="photos__list-item">
-            <div class="card">
-              <img src="images/6-photo-by-moritz-feldmann-from-pexels.jpg" alt="Winter cabin view" class="card__photo"/>
-              <div class="card__info">
-                <h2 class="card__text">Mountain house</h2>
-                <button class="card__like-button" type="button"></button>
-              </div>
-            </div>
-          </li>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
@@ -102,10 +59,10 @@
           </div>
           <form class="modal__form">
             <fieldset class="modal__form-fieldset">
-              <label for="name" class="modal__form-label">Name</label>
-              <input type="text" class="modal__form-input" id="name" placeholder="Name"/>
-              <label for="description" class="modal__form-label">Description</label>
-              <input type="text" class="modal__form-input" id="description" placeholder="Description"/>
+              <label for="edit-name" class="modal__form-label">Name</label>
+              <input type="text" class="modal__form-input" id="edit-name"/>
+              <label for="edit-description" class="modal__form-label">Description</label>
+              <input type="text" class="modal__form-input" id="edit-description"/>
               <button type="submit" class="modal__form-button">Save</button>
             </fieldset>
           </form>
