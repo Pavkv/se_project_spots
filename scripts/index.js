@@ -53,11 +53,11 @@ function fillEditFormFields() {
 }
 
 function setProfileModalListeners() {
-    fillEditFormFields();
     const editButton = document.querySelector(".profile__edit-profile");
     const editModalClose = profileSelectors["editModal"].querySelector(".modal__header-closebutton");
 
     editButton.addEventListener("click", () => {
+        fillEditFormFields();
         toggleProfileModal();
     });
 
