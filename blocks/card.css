@@ -6,10 +6,58 @@
 }
 
 .card__photo {
-    aspect-ratio: 1/1;
+    position: relative;
+    display: inline-block;
+    width: 100%;
     height: 413px;
+}
+
+.card__full-image-button {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    position: absolute;
+    cursor: pointer;
+    border: 0 solid white;
+    border-radius: 8px;
+    transition: border 0.3s ease, background-color 0.3s ease;
+    z-index: 1;
+}
+
+.card__full-image-button:hover {
+    border: 5px solid rgba(33, 33, 33, 0.8);
+}
+
+.card__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.card__delete-button {
+    position: absolute;
+    background-image: url("../images/card_delete_idle.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    top: 10px;
+    right: 10px;
+    padding: 0;
+    transition: .3s ease-in-out;
+    z-index: 2;
+}
+
+.card__delete-button:hover {
+    background-image: url("../images/card_delete_hover.svg");
 }
 
 .card__info {
@@ -31,13 +79,13 @@
 }
 
 .card__like-button {
-    background-image: url("../images/card_like.svg");
+    background-image: url("../images/card_like_idle.svg");
     background-size: contain;
     background-repeat: no-repeat;
     background-color: transparent;
     width: 23px;
     height: 20px;
-    opacity: 40%;
+    opacity: .4;
     transition: opacity .3s ease-in-out;
     cursor: pointer;
     border: none;
@@ -45,14 +93,21 @@
 }
 
 .card__like-button:hover {
-    opacity: 100%;
+    opacity: 1;
+}
+
+.card__like-button.active {
+    background-image: url("../images/card_like_hover.png");
+    opacity: 1;
+}
+
+.card__like-button.active:hover {
+    opacity: .4;
 }
 
 @media screen and (max-width: 879px){
     .card__photo {
         height: 288px;
-        object-fit: cover;
-        border-radius: 8px;
     }
 
     .card__like-button {

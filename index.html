@@ -36,7 +36,11 @@
           <template id="card-template">
             <li class="photos__list-item">
               <div class="card">
-                <img class="card__photo"/>
+                <div class="card__photo">
+                  <button class="card__delete-button" type="button"></button>
+                  <button class="card__full-image-button" type="button"></button>
+                  <img class="card__image"/>
+                </div>
                 <div class="card__info">
                   <h2 class="card__text"></h2>
                   <button class="card__like-button" type="button"></button>
@@ -55,7 +59,7 @@
         <div class="modal__container">
           <div class="modal__header">
             <h2 class="modal__header-text">Edit Profile</h2>
-            <button type="button" class="modal__header-closebutton"></button>
+            <button type="button" class="modal__header-close-button" id="edit-close"></button>
           </div>
           <form class="modal__form" id="profile-form">
             <fieldset class="modal__form-fieldset">
@@ -69,6 +73,34 @@
         </div>
       </div>
     </div>
+    <div class="modal" id="new-post-modal">
+      <div class="modal__overlay">
+        <div class="modal__container">
+          <div class="modal__header">
+            <h2 class="modal__header-text">New Post</h2>
+            <button type="button" class="modal__header-close-button" id="new-post-close"></button>
+          </div>
+          <form class="modal__form" id="new-post-form">
+            <fieldset class="modal__form-fieldset">
+              <label for="new-post-image-link" class="modal__form-label">Image link</label>
+              <input type="text" class="modal__form-input" id="new-post-image-link" placeholder="Paste a link to the picture"/>
+              <label for="new-post-caption" class="modal__form-label">Caption</label>
+              <input type="text" class="modal__form-input" id="new-post-caption" placeholder="Type your caption"/>
+              <button type="submit" class="modal__form-button">Save</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+      <div class="modal" id="full-image-modal">
+        <div class="modal__overlay">
+          <div class="modal__full-image">
+            <img class="modal__full-image-img" id="modal__full-image-img"/>
+            <button type="button" class="modal__full-image-close-button"></button>
+            <h2 class="modal__full-image-text"></h2>
+          </div>
+        </div>
+      </div>
   </div>
 <script src="./scripts/index.js" defer></script>
 </body>

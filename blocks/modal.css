@@ -5,8 +5,10 @@
     width: 100%;
     height: 100%;
     display: flex;
+    z-index: 3;
+    opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .modal__overlay {
@@ -16,10 +18,17 @@
     width: inherit;
     height: inherit;
     background: rgba(0, 0, 0, 0.75);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
 }
 
 .modal_opened {
+    opacity: 1;
     visibility: visible;
+}
+
+.modal_opened .modal__overlay {
+    transform: scale(1);
 }
 
 .modal__container {
@@ -45,8 +54,8 @@
     line-height: 1;
 }
 
-.modal__header-closebutton {
-    background-image: url("../images/close-icon.svg");
+.modal__header-close-button {
+    background-image: url("../images/close_icon_black.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-color: white;
@@ -58,7 +67,7 @@
     transition: opacity .3s ease-in-out;
 }
 
-.modal__header-closebutton:hover {
+.modal__header-close-button:hover {
     opacity: 1;
 }
 
@@ -111,6 +120,48 @@
     opacity: .8;
 }
 
+.modal__full-image {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    grid-row-gap: 8px;
+    grid-column-gap: 13px;
+}
+
+.modal__full-image-img {
+    max-width: 80vw;
+    max-height: 80vh;
+    border-radius: 8px;
+}
+
+.modal__full-image-close-button {
+    background-image: url("../images/close_icon_white.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    opacity: .4;
+    transition: opacity .3s ease-in-out;
+    padding: 0;
+}
+
+.modal__full-image-close-button {
+    opacity: 1;
+}
+
+.modal__full-image-text {
+    width: fit-content;
+    background-color: #212121;
+    color: #FFF;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    padding: 4px 8px;
+    border-radius: 8px;
+    margin: 0;
+}
+
 @media screen and (max-width: 879px){
     .modal__container {
         width: calc(300px - 12px * 2);
@@ -140,5 +191,19 @@
 
     .modal__form-button {
         width: 276px;
+    }
+
+    .modal__full-image {
+        grid-template-columns: 1fr;
+    }
+
+    .modal__full-image-close-button {
+        order: -1;
+        margin-left: auto;
+    }
+
+    .modal__full-image-text {
+        font-size: 1rem;
+        line-height: 1.2;
     }
 }
