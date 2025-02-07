@@ -195,6 +195,11 @@
 
     .modal__full-image {
         grid-template-columns: 1fr;
+        padding: 0 16px;
+    }
+
+    .modal__full-image-img {
+        max-width: 100%;
     }
 
     .modal__full-image-close-button {

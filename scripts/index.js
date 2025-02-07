@@ -88,7 +88,7 @@ function updateUserInformation () {
 }
 
 function renderCard(data) {
-    photoList.append(getCardElement(data));
+    photoList.prepend(getCardElement(data));
 }
 
 function openFullImage(data) {
@@ -118,6 +118,10 @@ function getCardElement(data) {
 
     const cardElementLike = cardElement.querySelector(".card__like-button");
     cardElementLike.addEventListener("click", () => cardElementLike.classList.toggle("active"));
+    const cardElementDelete = cardElement.querySelector(".card__delete-button");
+    cardElementDelete.addEventListener("click", () => {
+        photoList.removeChild(cardElement);
+    });
 
     const cardElementFullImageButton = cardElement.querySelector(".card__full-image-button");
     cardElementFullImageButton.addEventListener("click", () => openFullImage(data));
@@ -126,7 +130,7 @@ function getCardElement(data) {
 }
 
 function addCards () {
-    initialCards.forEach((card) => renderCard(card));
+    initialCards.reverse().forEach((card) => renderCard(card));
 }
 
 function setNewPostListeners() {
@@ -141,6 +145,8 @@ function setNewPostListeners() {
             src: newPostSelectors["newPostImageLink"].value,
             alt: newPostSelectors["newPostCaption"].value.toLocaleLowerCase().replace(" ", "_")
         });
+        newPostSelectors["newPostCaption"].value = "";
+        newPostSelectors["newPostImageLink"].value = "";
         toggleModal(newPostSelectors["newPostModal"]);
         evt.preventDefault();
     });
