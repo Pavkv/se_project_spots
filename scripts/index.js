@@ -40,8 +40,6 @@ const initialCards = [
 const profileForm = document.forms["profile-form"];
 const newPostForm = document.forms["new-post-form"];
 const photoList = document.querySelector(".photos__list");
-const fullImageModal = document.querySelector("#full-image-modal");
-const fullImageImgElement = fullImageModal.querySelector("#modal__full-image-img");
 
 const profileSelectors = {
     editModal: document.querySelector("#edit-modal"),
@@ -59,30 +57,33 @@ const newPostSelectors = {
     newPostCaption: newPostForm.querySelector("#new-post-caption")
 }
 
+const fullImageSelectors = {
+    fullImageModal: document.querySelector("#full-image-modal"),
+    fullImageImgElement: document.querySelector("#modal__full-image-img"),
+    fullImageText: document.querySelector(".modal__full-image-text")
+}
+
 function toggleModal(modal) {
     modal.classList.toggle("modal_opened");
 }
 
 function fillEditFormFields() {
-    profileSelectors["editName"].value = profileSelectors["profileUserName"].textContent;
-    profileSelectors["editDescription"].value = profileSelectors["profileDescription"].textContent;
+    profileSelectors.editName.value = profileSelectors.profileUserName.textContent;
+    profileSelectors.editDescription.value = profileSelectors.profileDescription.textContent;
 }
 
 function setProfileModalListeners() {
-    const editModalClose = profileSelectors["editModal"].querySelector("#edit-close");
-
-    profileSelectors["editButton"].addEventListener("click", () => {
+    profileSelectors.editButton.addEventListener("click", () => {
         fillEditFormFields();
-        toggleModal(profileSelectors["editModal"]);
+        toggleModal(profileSelectors.editModal);
     });
-    editModalClose.addEventListener("click", () => toggleModal(profileSelectors["editModal"]));
 }
 
 function updateUserInformation () {
     profileForm.addEventListener("submit", (evt) => {
-        profileSelectors["profileUserName"].textContent = profileSelectors["editName"].value;
-        profileSelectors["profileDescription"].textContent = profileSelectors["editDescription"].value;
-        toggleModal(profileSelectors["editModal"]);
+        profileSelectors.profileUserName.textContent = profileSelectors.editName.value;
+        profileSelectors.profileDescription.textContent = profileSelectors.editDescription.value;
+        toggleModal(profileSelectors.editModal);
         evt.preventDefault();
     });
 }
@@ -92,20 +93,10 @@ function renderCard(data) {
 }
 
 function openFullImage(data) {
-    toggleModal(fullImageModal);
-    fullImageImgElement.src = data.src;
-    fullImageImgElement.alt = data.alt;
-    fullImageModal.querySelector(".modal__full-image-text").textContent = data.name;
-}
-
-function setFullImageModalListeners() {
-    fullImageModal.querySelector(".modal__full-image-close-button").
-    addEventListener("click",() => {
-        toggleModal(fullImageModal);
-        fullImageImgElement.src = "";
-        fullImageImgElement.alt = "";
-        fullImageModal.querySelector(".modal__full-image-text").textContent = "";
-    });
+    toggleModal(fullImageSelectors.fullImageModal);
+    fullImageSelectors.fullImageImgElement.src = data.src;
+    fullImageSelectors.fullImageImgElement.alt = data.alt;
+    fullImageSelectors.fullImageText.textContent = data.name;
 }
 
 function getCardElement(data) {
@@ -117,10 +108,10 @@ function getCardElement(data) {
     cardPhoto.alt = data.alt;
 
     const cardElementLike = cardElement.querySelector(".card__like-button");
-    cardElementLike.addEventListener("click", () => cardElementLike.classList.toggle("active"));
+    cardElementLike.addEventListener("click", () => cardElementLike.classList.toggle("card__like-button--active"));
     const cardElementDelete = cardElement.querySelector(".card__delete-button");
     cardElementDelete.addEventListener("click", () => {
-        photoList.removeChild(cardElement);
+        cardElement.remove();
     });
 
     const cardElementFullImageButton = cardElement.querySelector(".card__full-image-button");
@@ -134,26 +125,38 @@ function addCards () {
 }
 
 function setNewPostListeners() {
-    const newPostModalClose = newPostSelectors["newPostModal"].querySelector("#new-post-close");
-
-    newPostSelectors["newPostButton"].addEventListener("click", () => toggleModal(newPostSelectors["newPostModal"]));
-    newPostModalClose.addEventListener("click", () => toggleModal(newPostSelectors["newPostModal"]));
+    newPostSelectors.newPostButton.addEventListener("click", () => toggleModal(newPostSelectors.newPostModal));
 
     newPostForm.addEventListener("submit", (evt) => {
         renderCard({
-            name: newPostSelectors["newPostCaption"].value,
-            src: newPostSelectors["newPostImageLink"].value,
-            alt: newPostSelectors["newPostCaption"].value.toLocaleLowerCase().replace(" ", "_")
+            name: newPostSelectors.newPostCaption.value,
+            src: newPostSelectors.newPostImageLink.value,
+            alt: newPostSelectors.newPostCaption.value.toLocaleLowerCase().replace(" ", "_")
         });
-        newPostSelectors["newPostCaption"].value = "";
-        newPostSelectors["newPostImageLink"].value = "";
-        toggleModal(newPostSelectors["newPostModal"]);
+        evt.target.reset();
+        toggleModal(newPostSelectors.newPostModal);
         evt.preventDefault();
+    });
+}
+
+function setCloseButtonListeners() {
+    const closeButton = document.querySelectorAll(".modal__close");
+
+    closeButton.forEach((button) => {
+        const modal = button.closest('.modal');
+        button.addEventListener('click', () => {
+            toggleModal(modal);
+            if (modal === fullImageSelectors.fullImageModal) {
+                fullImageSelectors.fullImageImgElement.src = "";
+                fullImageSelectors.fullImageImgElement.alt = "";
+                fullImageSelectors.fullImageText.textContent = "";
+            }
+        });
     });
 }
 
 setProfileModalListeners();
 setNewPostListeners();
-setFullImageModalListeners();
+setCloseButtonListeners();
 updateUserInformation();
 addCards();

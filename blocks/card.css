@@ -96,12 +96,12 @@
     opacity: 1;
 }
 
-.card__like-button.active {
+.card__like-button--active {
     background-image: url("../images/card_like_hover.png");
     opacity: 1;
 }
 
-.card__like-button.active:hover {
+.card__like-button--active:hover {
     opacity: .4;
 }
 
