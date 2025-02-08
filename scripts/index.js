@@ -93,6 +93,9 @@ function renderCard(data) {
 }
 
 function openFullImage(data) {
+    fullImageSelectors.fullImageImgElement.src = "";
+    fullImageSelectors.fullImageImgElement.alt = "";
+    fullImageSelectors.fullImageText.textContent = "";
     toggleModal(fullImageSelectors.fullImageModal);
     fullImageSelectors.fullImageImgElement.src = data.src;
     fullImageSelectors.fullImageImgElement.alt = data.alt;
@@ -108,7 +111,7 @@ function getCardElement(data) {
     cardPhoto.alt = data.alt;
 
     const cardElementLike = cardElement.querySelector(".card__like-button");
-    cardElementLike.addEventListener("click", () => cardElementLike.classList.toggle("card__like-button--active"));
+    cardElementLike.addEventListener("click", () => cardElementLike.classList.toggle("card__like-button_active"));
     const cardElementDelete = cardElement.querySelector(".card__delete-button");
     cardElementDelete.addEventListener("click", () => {
         cardElement.remove();
@@ -140,18 +143,11 @@ function setNewPostListeners() {
 }
 
 function setCloseButtonListeners() {
-    const closeButton = document.querySelectorAll(".modal__close");
+    const closeButtons = document.querySelectorAll(".modal__close");
 
-    closeButton.forEach((button) => {
+    closeButtons.forEach((button) => {
         const modal = button.closest('.modal');
-        button.addEventListener('click', () => {
-            toggleModal(modal);
-            if (modal === fullImageSelectors.fullImageModal) {
-                fullImageSelectors.fullImageImgElement.src = "";
-                fullImageSelectors.fullImageImgElement.alt = "";
-                fullImageSelectors.fullImageText.textContent = "";
-            }
-        });
+        button.addEventListener('click', () => toggleModal(modal));
     });
 }
 

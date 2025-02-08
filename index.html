@@ -1,109 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<meta name="description"
-				content="Interactive social media web application for photo sharing and profile adjustments."/>
-	<meta name="author" content="Pasha Zobov"/>
-	<meta name="keywords" content="Sports, social media, photo sharing, personal account, connect with other users"/>
-	<title>Sports</title>
-	<link rel="stylesheet" href="./pages/index.css"/>
-	<link rel="icon" href="favicon.ico"/>
-</head>
-<body>
-<div class="page">
-	<header class="header">
-		<img src="images/logo.svg" alt="Menu down button" class="header__icon"/>
-	</header>
-	<main class="main">
-		<section class="profile">
-			<img src="images/default_avatar.png" alt="User Avatar" class="profile__avatar"/>
-			<div class="profile__info">
-				<h1 class="profile__text profile__text_type_username">Bessie Coleman</h1>
-				<p class="profile__text profile__text_type_description">Civil Aviator</p>
-				<button class="profile__edit-profile" type="button">
-					<img src="images/header_edit.svg" alt="Edit symbol button" class="profile__edit-icon"/>
-					Edit Profile
-				</button>
-			</div>
-			<button class="profile__new-post" type="button">
-				<img src="images/header_new-post.svg" alt="Add new post" class="profile__new-post-icon"/>
-				New Post
-			</button>
-		</section>
-		<section class="photos">
-			<ul class="photos__list">
-				<template id="card-template">
-					<li class="photos__list-item">
-						<div class="card">
-							<div class="card__photo">
-								<button class="card__delete-button" type="button"></button>
-								<button class="card__full-image-button" type="button"></button>
-								<img class="card__image"/>
-							</div>
-							<div class="card__info">
-								<h2 class="card__text"></h2>
-								<button class="card__like-button" type="button"></button>
-							</div>
-						</div>
-					</li>
-				</template>
-			</ul>
-		</section>
-	</main>
-	<footer class="footer">
-		<p class="footer__copyright">2025 © Spots by Pasha Zobov</p>
-	</footer>
-	<div class="modal" id="edit-modal">
-		<div class="modal__overlay">
-			<div class="modal__container">
-				<div class="modal__header">
-					<h2 class="modal__header-text">Edit Profile</h2>
-					<button type="button" class="modal__close modal__header-close-button" id="edit-close"></button>
-				</div>
-				<form class="modal__form" id="profile-form">
-					<fieldset class="modal__form-fieldset">
-						<label for="edit-name" class="modal__form-label">Name</label>
-						<input type="text" class="modal__form-input" id="edit-name"/>
-						<label for="edit-description" class="modal__form-label">Description</label>
-						<input type="text" class="modal__form-input" id="edit-description"/>
-						<button type="submit" class="modal__form-button">Save</button>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="modal" id="new-post-modal">
-		<div class="modal__overlay">
-			<div class="modal__container">
-				<div class="modal__header">
-					<h2 class="modal__header-text">New Post</h2>
-					<button type="button" class="modal__close modal__header-close-button" id="new-post-close"></button>
-				</div>
-				<form class="modal__form" id="new-post-form">
-					<fieldset class="modal__form-fieldset">
-						<label for="new-post-image-link" class="modal__form-label">Image link</label>
-						<input type="text" class="modal__form-input" id="new-post-image-link"
-									 placeholder="Paste a link to the picture"/>
-						<label for="new-post-caption" class="modal__form-label">Caption</label>
-						<input type="text" class="modal__form-input" id="new-post-caption" placeholder="Type your caption"/>
-						<button type="submit" class="modal__form-button">Save</button>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="modal" id="full-image-modal">
-		<div class="modal__overlay">
-			<div class="modal__full-image">
-				<img class="modal__full-image-img" id="modal__full-image-img"/>
-				<button type="button" class="modal__close modal__full-image-close-button"></button>
-				<h2 class="modal__full-image-text"></h2>
-			</div>
-		</div>
-	</div>
-</div>
-<script src="./scripts/index.js" defer></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interactive social media web application for photo sharing and profile adjustments."
+    />
+    <meta name="author" content="Pasha Zobov" />
+    <meta
+      name="keywords"
+      content="Sports, social media, photo sharing, personal account, connect with other users"
+    />
+    <title>Sports</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          src="images/logo.svg"
+          alt="Menu down button"
+          class="header__icon"
+        />
+      </header>
+      <main class="main">
+        <section class="profile">
+          <img
+            src="images/default_avatar.png"
+            alt="User Avatar"
+            class="profile__avatar"
+          />
+          <div class="profile__info">
+            <h1 class="profile__text profile__text_type_username">
+              Bessie Coleman
+            </h1>
+            <p class="profile__text profile__text_type_description">
+              Civil Aviator
+            </p>
+            <button class="profile__edit-profile" type="button">
+              <img
+                src="images/header_edit.svg"
+                alt="Edit symbol button"
+                class="profile__edit-icon"
+              />
+              Edit Profile
+            </button>
+          </div>
+          <button class="profile__new-post" type="button">
+            <img
+              src="images/header_new-post.svg"
+              alt="Add new post"
+              class="profile__new-post-icon"
+            />
+            New Post
+          </button>
+        </section>
+        <section class="photos">
+          <ul class="photos__list">
+            <template id="card-template">
+              <li class="photos__list-item">
+                <div class="card">
+                  <div class="card__photo">
+                    <button class="card__delete-button" type="button"></button>
+                    <button
+                      class="card__full-image-button"
+                      type="button"
+                    ></button>
+                    <img class="card__image" />
+                  </div>
+                  <div class="card__info">
+                    <h2 class="card__text"></h2>
+                    <button class="card__like-button" type="button"></button>
+                  </div>
+                </div>
+              </li>
+            </template>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">2025 © Spots by Pasha Zobov</p>
+      </footer>
+      <div class="modal" id="edit-modal">
+        <div class="modal__overlay">
+          <div class="modal__container">
+            <div class="modal__header">
+              <h2 class="modal__header-text">Edit Profile</h2>
+              <button
+                type="button"
+                class="modal__close modal__header-close-button"
+                id="edit-close"
+              ></button>
+            </div>
+            <form class="modal__form" id="profile-form">
+              <fieldset class="modal__form-fieldset">
+                <label for="edit-name" class="modal__form-label">Name</label>
+                <input type="text" class="modal__form-input" id="edit-name" />
+                <label for="edit-description" class="modal__form-label"
+                  >Description</label
+                >
+                <input
+                  type="text"
+                  class="modal__form-input"
+                  id="edit-description"
+                />
+                <button type="submit" class="modal__form-button">Save</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="new-post-modal">
+        <div class="modal__overlay">
+          <div class="modal__container">
+            <div class="modal__header">
+              <h2 class="modal__header-text">New Post</h2>
+              <button
+                type="button"
+                class="modal__close modal__header-close-button"
+                id="new-post-close"
+              ></button>
+            </div>
+            <form class="modal__form" id="new-post-form">
+              <fieldset class="modal__form-fieldset">
+                <label for="new-post-image-link" class="modal__form-label"
+                  >Image link</label
+                >
+                <input
+                  type="text"
+                  class="modal__form-input"
+                  id="new-post-image-link"
+                  placeholder="Paste a link to the picture"
+                />
+                <label for="new-post-caption" class="modal__form-label"
+                  >Caption</label
+                >
+                <input
+                  type="text"
+                  class="modal__form-input"
+                  id="new-post-caption"
+                  placeholder="Type your caption"
+                />
+                <button type="submit" class="modal__form-button">Save</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="full-image-modal">
+        <div class="modal__overlay">
+          <div class="modal__full-image">
+            <img class="modal__full-image-img" id="modal__full-image-img" />
+            <button
+              type="button"
+              class="modal__close modal__full-image-close-button"
+            ></button>
+            <h2 class="modal__full-image-text"></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/index.js" defer></script>
+  </body>
 </html>
