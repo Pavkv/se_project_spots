@@ -94,19 +94,31 @@
                 id="edit-close"
               ></button>
             </div>
-            <form class="modal__form" id="profile-form">
-              <fieldset class="modal__form-fieldset">
-                <label for="edit-name" class="modal__form-label">Name</label>
-                <input type="text" class="modal__form-input" id="edit-name" />
-                <label for="edit-description" class="modal__form-label"
-                  >Description</label
-                >
-                <input
-                  type="text"
-                  class="modal__form-input"
-                  id="edit-description"
-                />
-                <button type="submit" class="modal__form-button">Save</button>
+            <form class="form" id="profile-form">
+              <fieldset class="form__fieldset">
+                <label class="form__label">
+                  Name
+                  <input
+                    type="text"
+                    class="form__input"
+                    id="edit-name"
+                    minlength="2" maxlength="40"
+                    required
+                  />
+                  <span class="form__input-error"></span>
+                </label>
+                <label class="form__label">
+                  Description
+                  <input
+                    type="text"
+                    class="form__input"
+                    id="edit-description"
+                    minlength="2" maxlength="200"
+                    required
+                  />
+                  <span class="form__input-error"></span>
+                </label>
+                <button type="submit" class="form__button">Save</button>
               </fieldset>
             </form>
           </div>
@@ -123,27 +135,33 @@
                 id="new-post-close"
               ></button>
             </div>
-            <form class="modal__form" id="new-post-form">
-              <fieldset class="modal__form-fieldset">
-                <label for="new-post-image-link" class="modal__form-label"
-                  >Image link</label
+            <form class="form" id="new-post-form">
+              <fieldset class="form__fieldset">
+                <label class="form__label">
+                  Image link
+                  <input
+                    type="url"
+                    class="form__input"
+                    id="new-post-image-link"
+                    placeholder="Paste a link to the picture"
+                    required
+                  />
+                  <span class="form__input-error"></span>
+                </label
                 >
-                <input
-                  type="text"
-                  class="modal__form-input"
-                  id="new-post-image-link"
-                  placeholder="Paste a link to the picture"
-                />
-                <label for="new-post-caption" class="modal__form-label"
-                  >Caption</label
-                >
-                <input
-                  type="text"
-                  class="modal__form-input"
-                  id="new-post-caption"
-                  placeholder="Type your caption"
-                />
-                <button type="submit" class="modal__form-button">Save</button>
+                <label for="new-post-caption" class="form__label">
+                  Caption
+                  <input
+                    type="text"
+                    class="form__input"
+                    id="new-post-caption"
+                    placeholder="Type your caption"
+                    minlength="2" maxlength="30"
+                    required
+                  />
+                  <span class="form__input-error"></span>
+                </label>
+                <button type="submit" class="form__button">Save</button>
               </fieldset>
             </form>
           </div>
@@ -162,6 +180,7 @@
         </div>
       </div>
     </div>
-    <script src="./scripts/index.js" defer></script>
+    <script src="scripts/index.js" defer></script>
+    <script src="scripts/validation.js" defer></script>
   </body>
 </html>
