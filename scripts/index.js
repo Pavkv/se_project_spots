@@ -93,7 +93,11 @@ const removeModalListeners = () => {
 
 function toggleModal(modal) {
     modal.classList.toggle("modal_opened");
-    modal.classList.contains("modal_opened") ? addModalListeners() : removeModalListeners();
+    const isOpened = modal.classList.contains("modal_opened");
+    isOpened ? addModalListeners() : removeModalListeners();
+    if (isOpened && modal === newPostSelectors.newPostModal) {
+        resetValidation(modal);
+    }
 }
 
 function fillEditFormFields() {
@@ -170,7 +174,7 @@ function addCards() {
 
 function setNewPostListeners() {
     newPostSelectors.newPostButton.addEventListener("click", () =>
-        toggleModal(newPostSelectors.newPostModal),
+        toggleModal(newPostSelectors.newPostModal)
     );
 
     newPostForm.addEventListener("submit", (evt) => {
