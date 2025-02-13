@@ -35,19 +35,26 @@ const toggleButtonState = (config, inputList, buttonElement) => {
     buttonElement.classList.toggle(config.inactiveButtonClass, buttonElement.disabled);
 };
 
-const resetValidation = (modal) => {
-    const inputList = Array.from(modal.querySelectorAll(settings.inputSelector));
-    const buttonElement = modal.querySelector(settings.submitButtonSelector);
+const disableButton = (formElement) => {
+    const buttonElement = formElement.querySelector(settings.submitButtonSelector);
+    buttonElement.disabled = true;
+    buttonElement.classList.add(settings.inactiveButtonClass);
+}
+
+const resetValidation = (formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
     inputList.forEach((inputElement) => {
         const errorElement = inputElement.parentElement.querySelector(settings.errorSelector);
         hideInputError(settings, inputElement, errorElement);
     });
-    toggleButtonState(settings, inputList, buttonElement);
 };
 
 const setEventListeners = (config, formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
+    formElement.addEventListener("reset", () => {
+        disableButton(formElement);
+    });
     inputList.forEach((inputElement) => {
         const errorElement = inputElement.parentElement.querySelector(config.errorSelector);
         inputElement.addEventListener("input", (evt) => {

@@ -48,20 +48,20 @@ const profileSelectors = {
     editName: profileForm.querySelector("#edit-name"),
     editDescription: profileForm.querySelector("#edit-description"),
     profileUserName: document.querySelector(".profile__text_type_username"),
-    profileDescription: document.querySelector(".profile__text_type_description"),
+    profileDescription: document.querySelector(".profile__text_type_description")
 };
 
 const newPostSelectors = {
     newPostModal: document.querySelector("#new-post-modal"),
     newPostButton: document.querySelector(".profile__new-post"),
     newPostImageLink: newPostForm.querySelector("#new-post-image-link"),
-    newPostCaption: newPostForm.querySelector("#new-post-caption"),
+    newPostCaption: newPostForm.querySelector("#new-post-caption")
 };
 
 const fullImageSelectors = {
     fullImageModal: document.querySelector("#full-image-modal"),
     fullImageImgElement: document.querySelector("#modal__full-image-img"),
-    fullImageText: document.querySelector(".modal__full-image-text"),
+    fullImageText: document.querySelector(".modal__full-image-text")
 };
 
 const handleEscapeClose = (evt) => {
@@ -106,6 +106,7 @@ function fillEditFormFields() {
 
 function setProfileModalListeners() {
     profileSelectors.editButton.addEventListener("click", () => {
+        resetValidation(profileForm);
         fillEditFormFields();
         toggleModal(profileSelectors.editModal);
     });
@@ -171,11 +172,12 @@ function addCards() {
 
 function setNewPostListeners() {
     newPostSelectors.newPostButton.addEventListener("click", () => {
-        resetValidation(newPostSelectors.newPostModal);
+        disableButton(newPostForm);
+        resetValidation(newPostForm);
         toggleModal(newPostSelectors.newPostModal);
     });
 
-    newPostForm.addEventListener("submit", (evt) => {
+    newPostForm.addEventListener("submit", () => {
         renderCard({
             name: newPostSelectors.newPostCaption.value,
             src: newPostSelectors.newPostImageLink.value,
@@ -183,7 +185,7 @@ function setNewPostListeners() {
                 .toLocaleLowerCase()
                 .replace(" ", "_"),
         });
-        evt.target.reset();
+        newPostForm.reset();
         toggleModal(newPostSelectors.newPostModal);
     });
 }
