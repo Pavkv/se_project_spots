@@ -172,7 +172,6 @@ function addCards() {
 
 function setNewPostListeners() {
     newPostSelectors.newPostButton.addEventListener("click", () => {
-        disableButton(newPostForm);
         resetValidation(newPostForm);
         toggleModal(newPostSelectors.newPostModal);
     });
@@ -186,6 +185,7 @@ function setNewPostListeners() {
                 .replace(" ", "_"),
         });
         newPostForm.reset();
+        disableButton(newPostForm);
         toggleModal(newPostSelectors.newPostModal);
     });
 }
