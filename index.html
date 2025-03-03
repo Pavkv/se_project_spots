@@ -10,7 +10,7 @@
     <meta name="author" content="Pasha Zobov" />
     <meta
       name="keywords"
-      content="Sports, social media, photo sharing, personal account, connect with other users"
+      content="Spots, social media, photo sharing, personal account, connect with other users"
     />
     <title>Sports</title>
     <link rel="stylesheet" href="./pages/index.css" />
@@ -83,14 +83,14 @@
       <footer class="footer">
         <p class="footer__copyright">2025 © Spots by Pasha Zobov</p>
       </footer>
-      <div class="modal" id="edit-modal">
-        <div class="modal__overlay">
-          <div class="modal__container">
-            <div class="modal__header">
-              <h2 class="modal__header-text">Edit Profile</h2>
+      <div class="popup" id="edit-popup">
+        <div class="popup__overlay">
+          <div class="popup__container">
+            <div class="popup__header">
+              <h2 class="popup__header-text">Edit Profile</h2>
               <button
                 type="button"
-                class="modal__close modal__header-close-button"
+                class="popup__close popup__header-close-button"
                 id="edit-close"
               ></button>
             </div>
@@ -124,14 +124,14 @@
           </div>
         </div>
       </div>
-      <div class="modal" id="new-post-modal">
-        <div class="modal__overlay">
-          <div class="modal__container">
-            <div class="modal__header">
-              <h2 class="modal__header-text">New Post</h2>
+      <div class="popup" id="new-post-popup">
+        <div class="popup__overlay">
+          <div class="popup__container">
+            <div class="popup__header">
+              <h2 class="popup__header-text">New Post</h2>
               <button
                 type="button"
-                class="modal__close modal__header-close-button"
+                class="popup__close popup__header-close-button"
                 id="new-post-close"
               ></button>
             </div>
@@ -167,20 +167,19 @@
           </div>
         </div>
       </div>
-      <div class="modal" id="full-image-modal">
-        <div class="modal__overlay">
-          <div class="modal__full-image">
-            <img class="modal__full-image-img" id="modal__full-image-img" />
+      <div class="popup" id="full-image-popup">
+        <div class="popup__overlay">
+          <div class="popup__full-image">
+            <img class="popup__full-image-img" id="popup__full-image-img" />
             <button
               type="button"
-              class="modal__close modal__full-image-close-button"
+              class="popup__close popup__full-image-close-button"
             ></button>
-            <h2 class="modal__full-image-text"></h2>
+            <h2 class="popup__full-image-text"></h2>
           </div>
         </div>
       </div>
     </div>
-    <script src="scripts/index.js" defer></script>
-    <script src="scripts/validation.js" defer></script>
+    <script type="module" src="scripts/index.js"></script>
   </body>
 </html>

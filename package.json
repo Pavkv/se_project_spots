@@ -1,4 +1,22 @@
 {
+  "name": "se_project_spots",
+  "version": "1.0.0",
+  "description": "![image](https://github.com/user-attachments/assets/75cf42d7-dfcf-4e3f-8beb-ba00b0805ca6)",
+  "homepage": "https://github.com/Pavkv/se_project_spots#readme",
+  "bugs": {
+    "url": "https://github.com/Pavkv/se_project_spots/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pavkv/se_project_spots.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
     "prettier": "^3.4.2"
   }
