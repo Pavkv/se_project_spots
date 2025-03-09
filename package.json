@@ -1,8 +1,8 @@
 {
   "name": "se_project_spots",
-  "version": "1.0.0",
+  "version": "5.1.0",
   "description": "![image](https://github.com/user-attachments/assets/75cf42d7-dfcf-4e3f-8beb-ba00b0805ca6)",
-  "homepage": "https://github.com/Pavkv/se_project_spots#readme",
+  "homepage": "https://pavkv.github.io/se_project_spots/",
   "bugs": {
     "url": "https://github.com/Pavkv/se_project_spots/issues"
   },
@@ -11,13 +11,29 @@
     "url": "git+https://github.com/Pavkv/se_project_spots.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Pasha Zobov",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development"
   },
   "devDependencies": {
-    "prettier": "^3.4.2"
+    "@babel/core": "7.26.9",
+    "@babel/preset-env": "7.26.9",
+    "autoprefixer": "10.4.20",
+    "babel-loader": "10.0.0",
+    "clean-webpack-plugin": "4.0.0",
+    "css-loader": "7.1.2",
+    "cssnano": "7.0.6",
+    "html-webpack-plugin": "5.6.3",
+    "mini-css-extract-plugin": "2.9.2",
+    "postcss-loader": "8.1.1",
+    "webpack": "5.98.0",
+    "webpack-cli": "6.0.1",
+    "webpack-dev-server": "5.2.0"
+  },
+  "dependencies": {
+    "core-js": "3.41.0"
   }
 }
