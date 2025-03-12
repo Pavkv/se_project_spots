@@ -21,19 +21,19 @@
       </header>
       <main class="main">
         <section class="profile">
-          <img
-            alt="User Avatar"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar">
+            <button class="profile__edit-avatar" type="button">
+              <span class="profile__edit-avatar-text">
+                <span class="profile__edit-icon profile__edit-icon_avatar"></span>
+              </span>
+            </button>
+            <img alt="User Avatar" class="profile__avatar-image" />
+          </div>
           <div class="profile__info">
-            <h1 class="profile__text profile__text_type_username">
-              Bessie Coleman
-            </h1>
-            <p class="profile__text profile__text_type_description">
-              Civil Aviator
-            </p>
+            <h1 class="profile__text profile__text_type_username"></h1>
+            <p class="profile__text profile__text_type_description"></p>
             <button class="profile__edit-profile" type="button">
-              <span class="profile__edit-icon"></span>
+              <span class="profile__edit-icon profile__edit-icon_profile"></span>
               Edit Profile
             </button>
           </div>
@@ -45,7 +45,7 @@
         <section class="photos">
           <ul class="photos__list">
             <template id="card-template">
-              <li class="photos__list-item">
+              <li class="photos__list-item" id="">
                 <div class="card">
                   <div class="card__photo">
                     <button class="card__delete-button" type="button"></button>
@@ -70,9 +70,11 @@
       </footer>
       <div class="popup" id="edit-popup">
         <div class="popup__overlay">
-          <div class="popup__container">
+          <div class="popup__container popup__container_add-edit">
             <div class="popup__header">
-              <h2 class="popup__header-text">Edit Profile</h2>
+              <h2 class="popup__header-text popup__header-text_add-edit">
+                Edit Profile
+              </h2>
               <button
                 type="button"
                 class="popup__close popup__header-close-button"
@@ -87,7 +89,8 @@
                     type="text"
                     class="form__input"
                     id="edit-name"
-                    minlength="2" maxlength="40"
+                    minlength="2"
+                    maxlength="40"
                     required
                   />
                   <span class="form__error"></span>
@@ -98,7 +101,8 @@
                     type="text"
                     class="form__input"
                     id="edit-description"
-                    minlength="2" maxlength="200"
+                    minlength="2"
+                    maxlength="200"
                     required
                   />
                   <span class="form__error"></span>
@@ -111,9 +115,11 @@
       </div>
       <div class="popup" id="new-post-popup">
         <div class="popup__overlay">
-          <div class="popup__container">
+          <div class="popup__container popup__container_add-edit">
             <div class="popup__header">
-              <h2 class="popup__header-text">New Post</h2>
+              <h2 class="popup__header-text popup__header-text_add-edit">
+                New Post
+              </h2>
               <button
                 type="button"
                 class="popup__close popup__header-close-button"
@@ -132,8 +138,7 @@
                     required
                   />
                   <span class="form__error"></span>
-                </label
-                >
+                </label>
                 <label class="form__label">
                   Caption
                   <input
@@ -141,7 +146,8 @@
                     class="form__input"
                     id="new-post-caption"
                     placeholder="Type your caption"
-                    minlength="2" maxlength="30"
+                    minlength="2"
+                    maxlength="30"
                     required
                   />
                   <span class="form__error"></span>
@@ -158,9 +164,69 @@
             <img class="popup__full-image-img" id="popup__full-image-img" />
             <button
               type="button"
-              class="popup__close popup__full-image-close-button"
+              class="popup__close popup__close-button"
             ></button>
             <h2 class="popup__full-image-text"></h2>
+          </div>
+        </div>
+      </div>
+      <div class="popup" id="delete-card-popup">
+        <div class="popup__overlay">
+          <div class="popup__delete-card">
+            <div class="popup__container popup__container_delete">
+              <h2 class="popup__header-text popup__header-text_delete-card">
+                Are you sure you want to delete this image?
+              </h2>
+              <button
+                type="submit"
+                class="popup__button popup__button_delete-card"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                class="popup__button popup__button_cancel-delete-card"
+              >
+                Cancel
+              </button>
+            </div>
+            <button
+              type="button"
+              class="popup__close popup__close-button"
+              id="delete-card-close"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <div class="popup" id="edit-avatar-popup">
+        <div class="popup__overlay">
+          <div class="popup__container popup__container_add-edit">
+            <div class="popup__header">
+              <h2 class="popup__header-text popup__header-text_add-edit">
+                Edit profile avatar
+              </h2>
+              <button
+                type="button"
+                class="popup__close popup__header-close-button"
+                id="edit-avatar-close"
+              ></button>
+            </div>
+            <form class="form" id="edit-avatar-form">
+              <fieldset class="form__fieldset">
+                <label class="form__label">
+                  Profile Picture
+                  <input
+                    type="url"
+                    class="form__input"
+                    id="edit-avatar-image-link"
+                    placeholder="Paste a link to the picture"
+                    required
+                  />
+                  <span class="form__error"></span>
+                </label>
+                <button type="submit" class="form__button">Save</button>
+              </fieldset>
+            </form>
           </div>
         </div>
       </div>

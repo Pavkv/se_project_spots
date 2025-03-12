@@ -19,6 +19,8 @@ module.exports = class Popup {
         document.removeEventListener("click", this._handleMouseClickClose);
     }
 
+    getSubmitButton = () => this._popup.querySelector("button[type='submit']");
+
     togglePopup = () => {
         this._isOpen() ? this._removePopupClose() : this._addPopupClose();
         this._popup.classList.toggle("popup_visible");

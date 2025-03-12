@@ -43,7 +43,8 @@ const formSelectors = {
 
 const profileSelectors = [
     document.querySelector(".profile__text_type_username"),
-    document.querySelector(".profile__text_type_description")
+    document.querySelector(".profile__text_type_description"),
+    document.querySelector(".profile__avatar-image")
 ];
 
 const newPostSelectors = {
@@ -59,4 +60,16 @@ const fullImageSelectors = {
     fullImageText: ".popup__full-image-text"
 };
 
-module.exports = { initialCards, photoList, cardSelectors, editSelectors, formSelectors, profileSelectors, newPostSelectors, fullImageSelectors };
+const editAvatarSelectors = {
+    editAvatarPopup: "#edit-avatar-popup",
+    editAvatarButton: ".profile__edit-avatar",
+    editAvatarLink: "#edit-avatar-link"
+};
+
+const deleteCardSelectors = {
+    deleteCardPopup: "#delete-card-popup",
+    deleteCardButtonDelete: ".popup__button_delete-card",
+    deleteCardButtonCancel: ".popup__button_cancel-delete-card",
+}
+
+module.exports = { initialCards, photoList, cardSelectors, editSelectors, formSelectors, profileSelectors, newPostSelectors, fullImageSelectors, editAvatarSelectors, deleteCardSelectors };
