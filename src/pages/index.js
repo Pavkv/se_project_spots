@@ -5,8 +5,8 @@ const Popup = require("../components/Popup.js");
 const Section = require("../components/Section.js");
 const Card = require("../components/Card.js");
 const PopupWithForm = require("../components/PopupWithForm.js");
+const deleteCardPopupHandler = require("../scripts/deleteCardPopupHandler.js");
 const FormValidation = require("../components/FormValidation.js");
-
 
 const api = new Api({
     baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -30,18 +30,18 @@ api.getUserInfo().then(res => {
     editUserInfo(res.name, res.about, res.avatar);
 }).catch(err => console.log(err));
 
-const animateSavingText = (button, text) => {
+const animateText = (button, text) => {
     let dots = "";
     return setInterval(() => {
         dots = dots.length < 3 ? dots + "." : "";
-        button.textContent += `${text}ing${dots}`;
+        button.textContent = `${text}ing${dots}`;
     }, 500);
 };
 
 const submitButtonText = (popup) => {
     const submitButton = popup.getSubmitButton();
     const originalText = submitButton.textContent;
-    return { loadingAnimation: animateSavingText(submitButton, originalText.slice(0, submitButton.textContent.length - 1)),
+    return { loadingAnimation: animateText(submitButton, originalText.slice(0, submitButton.textContent.length - 1)),
         originalText };
 };
 
@@ -62,23 +62,11 @@ const cardList = new Section(
                 document.querySelector(fullImageText).textContent = data.name;
                 fullSizePopup.togglePopup();
             },
-            deleteCard: (id) => {
+            deleteCard: (card) => {
                 deleteCardPopup.togglePopup();
-                document.querySelector(constants.deleteCardSelectors.deleteCardButtonDelete).
-                addEventListener("click", () => {
-                    const { loadingAnimation, originalText } = submitButtonText(deleteCardPopup);
-                    api.deleteCard(id).catch(err => console.log(err)).
-                    finally(() => {
-                        clearInterval(loadingAnimation);
-                        deleteCardPopup.getSubmitButton().textContent = originalText;
-                        deleteCardPopup.togglePopup();
-                        window.location.reload();
-                    });
-                });
-                document.querySelector(constants.deleteCardSelectors.deleteCardButtonCancel).
-                addEventListener("click", () => {
-                    deleteCardPopup.togglePopup();
-                });
+                deleteCardPopupHandler(constants.deleteCardSelectors.deleteCardButtonDelete,
+                    constants.deleteCardSelectors.deleteCardButtonCancel, deleteCardPopup,
+                    api, submitButtonText, card)();
             },
             likeCard: (id) => {
                 api.likeCard(id).catch(err => console.log(err));
@@ -105,8 +93,8 @@ const updateProfileForm = new PopupWithForm(constants.editSelectors.editPopup, {
         finally(() => {
             clearInterval(loadingAnimation);
             popup.getSubmitButton().textContent = originalText;
+            popup.togglePopup();
         });
-        popup.togglePopup();
     }
 });
 updateProfileForm.setEventListeners();
@@ -123,30 +111,47 @@ new FormValidation(updateProfileForm.getPopupForm(), constants.formSelectors).en
 const newPostForm = new PopupWithForm(constants.newPostSelectors.newPostPopup, {
     submit: (popup, evt, inputs) => {
         evt.preventDefault();
+        const { loadingAnimation, originalText } = submitButtonText(popup);
         api.addNewCard(inputs[1], inputs[0]).
-        then(() => window.location.reload()).
+        then(res => {
+            cardList.addItem({
+                name: res.name,
+                link: res.link,
+                alt: res.name.toString().toLocaleLowerCase().replace(" ", "_"),
+                _id: res.id,
+            });
+        }).
         catch(err => console.log(err)).
-        finally(() => {
-            const { loadingAnimation, originalText } = submitButtonText(popup);
+        finally(() =>{
             clearInterval(loadingAnimation);
             popup.getSubmitButton().textContent = originalText;
+            popup.togglePopup();
         });
-        popup.togglePopup();
     }
 });
 newPostForm.setEventListeners();
-document.querySelector(".profile__new-post").addEventListener("click", () => newPostForm.togglePopup());
+document.querySelector(".profile__new-post").addEventListener("click", () => {
+    newPostForm.togglePopup();
+    newPostForm.disableSubmit();
+});
 new FormValidation(newPostForm.getPopupForm(), constants.formSelectors).enableValidation();
 
 const editAvatarForm = new PopupWithForm(constants.editAvatarSelectors.editAvatarPopup, {
     submit: (popup, evt, inputs) => {
         evt.preventDefault();
+        const { loadingAnimation, originalText } = submitButtonText(popup);
         api.editAvatar(inputs[0]).
         then(res => editUserInfo(null, null, res.avatar)).
-        catch(err => console.log(err));
-        popup.togglePopup();
+        catch(err => console.log(err)).finally(() => {
+            clearInterval(loadingAnimation);
+            popup.getSubmitButton().textContent = originalText;
+            popup.togglePopup();
+        });
     }
 });
 editAvatarForm.setEventListeners();
-document.querySelector(".profile__edit-avatar").addEventListener("click", () => editAvatarForm.togglePopup());
+document.querySelector(".profile__edit-avatar").addEventListener("click", () => {
+    editAvatarForm.togglePopup();
+    editAvatarForm.disableSubmit();
+});
 new FormValidation(editAvatarForm.getPopupForm(), constants.formSelectors).enableValidation();

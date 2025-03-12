@@ -25,26 +25,26 @@ module.exports = class FormValidation {
 
     _hasInvalidInput = () => this._inputList.some(inputElement => !inputElement.validity.valid);
 
+    _disableButton = () => {
+        this._buttonElement.disabled = true;
+        this._buttonElement.classList.add(this._formSelectors.inactiveButtonClass);
+    };
+
     _toggleButtonState = () => {
         const isDisabled = this._hasInvalidInput();
         this._buttonElement.disabled = isDisabled;
         this._buttonElement.classList.toggle(this._formSelectors.inactiveButtonClass, isDisabled);
     };
 
-    _disableButton = () => {
-        this._buttonElement.disabled = true;
-        this._buttonElement.classList.add(this._formSelectors.inactiveButtonClass);
-    }
-
     _resetValidation = () => {
         this._inputList.forEach(inputElement => {
             const errorElement = inputElement.parentElement.querySelector(this._formSelectors.errorSelector);
             this._hideInputError(inputElement, errorElement);
         });
+        this._disableButton();
     };
 
     _setEventListeners = () => {
-        this._formElement.addEventListener("reset", this._disableButton);
         this._inputList.forEach(inputElement => {
             const errorElement = inputElement.parentElement.querySelector(this._formSelectors.errorSelector);
             const validateInput = () => {

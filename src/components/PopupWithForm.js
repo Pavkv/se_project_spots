@@ -8,12 +8,24 @@ module.exports = class PopupWithForm extends Popup {
         this._inputList = Array.from(this._popupForm.querySelectorAll(".form__input"));
     }
 
-    _getInputValues = () => { return this._inputList.map(input => { return input.value }) }
+    _getInputValues() { return this._inputList.map(input => { return input.value }) }
 
-    getPopupForm = () => { return this._popupForm };
+    disableSubmit() {
+        this._inputList[0].value;
+        if (this._inputList.some(input => input.value === "")) {
+            const button = this._popup.querySelector(".form__button");
+            button.disabled = true;
+            button.classList.add("form__button_disabled");
+        }
+    }
+
+    getPopupForm() { return this._popupForm };
 
     setEventListeners() {
         super.setEventListeners();
-        this._popupForm.addEventListener("submit", evt => this._submit(this, evt, this._getInputValues()));
+        this._popupForm.addEventListener("submit", evt => {
+            this._submit(this, evt, this._getInputValues());
+            this._popupForm.reset();
+        });
     }
 }

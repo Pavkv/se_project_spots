@@ -42,7 +42,6 @@ module.exports = class Api {
     addNewCard(name, link) {
         return this._fetchResponse('cards', 'POST', {name, link}).
         then(res => {
-            console.log(res)
             return {
                 name: res.name,
                 link: res.link,

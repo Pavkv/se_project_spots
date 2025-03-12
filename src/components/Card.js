@@ -27,9 +27,7 @@ module.exports = class Card {
             this._toggleCardLike();
         });
         this._cardDelete.addEventListener("click", () => {
-            if (this._deleteCard(this._card.id)) {
-                this._card.remove();
-            }
+            this._deleteCard(this._card);
         });
         this._cardFull.addEventListener("click", () => this._fullSize(this._data));
     }
