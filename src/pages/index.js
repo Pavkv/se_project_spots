@@ -1,12 +1,7 @@
 require("./index.css");
+const { profileForm, editAvatarForm, newPostForm, cardList, profileSelectors, newPostSelectors, fullImageSelectors, editAvatarSelectors, deleteCardSelectors } = require("../utils/constants.js");
 const Api = require("../components/Api.js");
-const constants = require("../utils/constants.js");
-const Popup = require("../components/Popup.js");
-const Section = require("../components/Section.js");
-const Card = require("../components/Card.js");
-const PopupWithForm = require("../components/PopupWithForm.js");
-const deleteCardPopupHandler = require("../scripts/deleteCardPopupHandler.js");
-const FormValidation = require("../components/FormValidation.js");
+const {resetValidation, disableButton} = require("../scripts/validation.js");
 
 const api = new Api({
     baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -18,17 +13,21 @@ const api = new Api({
 
 const editUserInfo = (name, about, avatar) => {
     if (name && about) {
-        constants.profileSelectors[0].textContent = name;
-        constants.profileSelectors[1].textContent = about;
+        profileSelectors.profileUserName.textContent = name;
+        profileSelectors.profileDescription.textContent = about;
     }
     if (avatar) {
-        constants.profileSelectors[2].src = avatar
+        profileSelectors.profileAvatar.src = avatar
     }
 };
 
 api.getUserInfo().then(res => {
     editUserInfo(res.name, res.about, res.avatar);
 }).catch(err => console.log(err));
+
+const getSubmitButton = (popup) => {
+    return popup.querySelector("button[type='submit']");
+};
 
 const animateText = (button, text) => {
     let dots = "";
@@ -39,119 +38,236 @@ const animateText = (button, text) => {
 };
 
 const submitButtonText = (popup) => {
-    const submitButton = popup.getSubmitButton();
+    const submitButton = getSubmitButton(popup);
     const originalText = submitButton.textContent;
-    return { loadingAnimation: animateText(submitButton, originalText.slice(0, submitButton.textContent.length - 1)),
-        originalText };
+    return {
+        loadingAnimation: animateText(submitButton, originalText.slice(0, submitButton.textContent.length - 1)),
+        originalText
+    };
 };
 
-const fullSizePopup = new Popup(constants.fullImageSelectors.fullImagePopup);
-fullSizePopup.setEventListeners();
+const handleEscapeClose = (evt) => {
+    if (evt.key === "Escape") {
+        const openPopup = document.querySelector(".popup.popup_visible");
+        if (openPopup) {
+            togglePopup(openPopup);
+            document.activeElement.blur();
+        }
+    }
+};
 
-const deleteCardPopup = new Popup(constants.deleteCardSelectors.deleteCardPopup);
-deleteCardPopup.setEventListeners();
+const handleMouseClickClose = (evt) => {
+    const openPopup = document.querySelector(".popup.popup_visible");
+    if (openPopup && evt.target === openPopup.children[0]) {
+        togglePopup(openPopup);
+    }
+};
 
-const cardList = new Section(
-    {
-        items: [],
-        renderer: (item) => new Card(item, constants.cardSelectors, {
-            fullSize: (data) => {
-                const { fullImageImgElement, fullImageText } = constants.fullImageSelectors;
-                document.querySelector(fullImageImgElement).src = data.link;
-                document.querySelector(fullImageImgElement).alt = data.alt;
-                document.querySelector(fullImageText).textContent = data.name;
-                fullSizePopup.togglePopup();
-            },
-            deleteCard: (card) => {
-                deleteCardPopup.togglePopup();
-                deleteCardPopupHandler(constants.deleteCardSelectors.deleteCardButtonDelete,
-                    constants.deleteCardSelectors.deleteCardButtonCancel, deleteCardPopup,
-                    api, submitButtonText, card)();
-            },
-            likeCard: (id) => {
-                api.likeCard(id).catch(err => console.log(err));
-            }
-        }).getCard()
-    },
-    constants.photoList
-);
+const addPopupListeners = () => {
+    document.addEventListener("keydown", handleEscapeClose);
+    document.addEventListener("click", handleMouseClickClose);
+};
 
-api.getCards()
-    .then(cards => {
-        cardList.setItems(cards);
-        cardList.renderItems();
-    })
-    .catch(err => console.log(err));
+const removePopupListeners = () => {
+    document.removeEventListener("keydown", handleEscapeClose);
+    document.removeEventListener("click", handleMouseClickClose);
+};
 
-const updateProfileForm = new PopupWithForm(constants.editSelectors.editPopup, {
-    submit: (popup, evt, inputs) => {
+function togglePopup(popup) {
+    popup.classList.toggle("popup_visible");
+    const isOpened = popup.classList.contains("popup_visible");
+    isOpened ? addPopupListeners() : removePopupListeners();
+}
+
+function fillEditFormFields() {
+    profileSelectors.editName.value =
+        profileSelectors.profileUserName.textContent.trim();
+    profileSelectors.editDescription.value =
+        profileSelectors.profileDescription.textContent.trim();
+}
+
+function setProfilePopupListeners() {
+    profileSelectors.editButton.addEventListener("click", () => {
+        resetValidation(profileForm);
+        fillEditFormFields();
+        togglePopup(profileSelectors.editPopup);
+    });
+    
+    profileForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
+        const popup = profileSelectors.editPopup;
         const { loadingAnimation, originalText } = submitButtonText(popup);
-        api.editUserInfo(inputs[0], inputs[1]).
+        api.editUserInfo(profileSelectors.editName.value, profileSelectors.editDescription.value).
         then(res => editUserInfo(res.name, res.about)).
         catch(err => console.log(err)).
         finally(() => {
             clearInterval(loadingAnimation);
-            popup.getSubmitButton().textContent = originalText;
-            popup.togglePopup();
+            getSubmitButton(popup).textContent = originalText;
+            togglePopup(popup);
         });
-    }
-});
-updateProfileForm.setEventListeners();
-document.querySelector(".profile__edit-profile").addEventListener("click", () => {
-    updateProfileForm.togglePopup();
-    api.getUserInfo().
-    then(res => {
-        document.querySelector(constants.editSelectors.editName).value = res.name;
-        document.querySelector(constants.editSelectors.editDescription).value = res.about;
-    })
-});
-new FormValidation(updateProfileForm.getPopupForm(), constants.formSelectors).enableValidation();
+    });
+}
 
-const newPostForm = new PopupWithForm(constants.newPostSelectors.newPostPopup, {
-    submit: (popup, evt, inputs) => {
+function setAvatarPopupListeners() {
+    editAvatarSelectors.editAvatarButton.addEventListener("click", () => {
+        resetValidation(editAvatarSelectors.editAvatarPopup);
+        togglePopup(editAvatarSelectors.editAvatarPopup);
+    });
+
+    editAvatarForm.addEventListener("submit", (evt) => {
         evt.preventDefault();
+        const popup = editAvatarSelectors.editAvatarPopup;
         const { loadingAnimation, originalText } = submitButtonText(popup);
-        api.addNewCard(inputs[1], inputs[0]).
-        then(res => {
-            cardList.addItem({
-                name: res.name,
-                link: res.link,
-                alt: res.name.toString().toLocaleLowerCase().replace(" ", "_"),
-                _id: res.id,
+        api.editAvatar(editAvatarSelectors.editAvatarLink.value).
+        then(res => editUserInfo(null, null, res.avatar)).
+        catch(err => console.log(err)).
+        finally(() => {
+            clearInterval(loadingAnimation);
+            getSubmitButton(popup).textContent = originalText;
+            editAvatarForm.reset();
+            disableButton(editAvatarForm);
+            togglePopup(popup);
+        });
+    });
+}
+
+function renderCard(data) {
+    cardList.prepend(getCardElement(data));
+}
+
+function openFullImage(data) {
+    fullImageSelectors.fullImageImgElement.src = "";
+    fullImageSelectors.fullImageImgElement.alt = "";
+    fullImageSelectors.fullImageText.textContent = "";
+    togglePopup(fullImageSelectors.fullImagePopup);
+    fullImageSelectors.fullImageImgElement.src = data.src;
+    fullImageSelectors.fullImageImgElement.alt = data.alt;
+    fullImageSelectors.fullImageText.textContent = data.name;
+}
+
+function setDeleteCardPopupListeners(card) {
+    const deleteButton = deleteCardSelectors.deleteCardButtonDelete;
+    const cancelButton = deleteCardSelectors.deleteCardButtonCancel;
+
+    const deleteButtonHandler = () => {
+        return function handler() {
+            const {loadingAnimation, originalText} = submitButtonText(deleteCardSelectors.deleteCardPopup);
+            api.deleteCard(card.id).catch(err => console.log(err)).finally(() => {
+                clearInterval(loadingAnimation);
+                getSubmitButton(deleteCardSelectors.deleteCardPopup).textContent = originalText;
+                togglePopup(deleteCardSelectors.deleteCardPopup);
+                card.remove();
+                deleteButton.removeEventListener("click", handler);
+            });
+        };
+    };
+
+    const cancelButtonHandler = () => {
+        togglePopup(deleteCardSelectors.deleteCardPopup);
+        cancelButton.removeEventListener("click", cancelButtonHandler);
+    };
+
+    return () => {
+        deleteButton.removeEventListener("click", deleteButton._handler);
+        deleteButton._handler = deleteButtonHandler(card);
+        deleteButton.addEventListener("click", deleteButton._handler);
+
+        cancelButton.removeEventListener("click", cancelButtonHandler);
+        cancelButton.addEventListener("click", cancelButtonHandler);
+    };
+}
+
+function getCardElement(data) {
+    const cardElement = document
+        .querySelector("#card-template")
+        .content.querySelector(".photos__list-item")
+        .cloneNode(true);
+    cardElement.querySelector(".card__text").textContent = data.name;
+    const cardPhoto = cardElement.querySelector(".card__image");
+    const cardElementLike = cardElement.querySelector(".card__like-button");
+    cardPhoto.src = data.src;
+    cardPhoto.alt = data.alt;
+    cardElement.id = data.id;
+    if (data.isLiked){
+        cardElementLike.classList.toggle("card__like-button_active");
+    }
+
+    cardElementLike.addEventListener("click", () => {
+        api.likeCard(data.id).catch(err => console.log(err));
+        cardElementLike.classList.toggle("card__like-button_active");
+    });
+    const cardElementDelete = cardElement.querySelector(".card__delete-button");
+    cardElementDelete.addEventListener("click", () => {
+        togglePopup(deleteCardSelectors.deleteCardPopup);
+        setDeleteCardPopupListeners(cardElement)();
+    });
+
+    const cardElementFullImageButton = cardElement.querySelector(
+        ".card__full-image-button",
+    );
+    cardElementFullImageButton.addEventListener("click", () =>
+        openFullImage(data),
+    );
+
+    return cardElement;
+}
+
+(function addCards() {
+    api.getCards().then(cards => {
+        cards.reverse().forEach(card => {
+            renderCard({
+                name: card.name,
+                src: card.link,
+                alt: card.name.toString().toLocaleLowerCase().replace(" ", "_"),
+                id: card._id,
+                isLiked: card.isLiked
+            })
+        })
+    }).catch(err => console.log(err));
+})();
+
+function setNewPostPopupListeners() {
+    newPostSelectors.newPostButton.addEventListener("click", () => {
+        resetValidation(newPostForm);
+        togglePopup(newPostSelectors.newPostPopup);
+    });
+
+    newPostForm.addEventListener("submit", (evt) => {
+        evt.preventDefault();
+        const popup = newPostSelectors.newPostPopup;
+        const { loadingAnimation, originalText } = submitButtonText(popup);
+        api.addNewCard(newPostSelectors.newPostCaption.value, newPostSelectors.newPostImageLink.value).
+        then(card => {
+            renderCard({
+                name: card.name,
+                src: card.link,
+                alt: card.name.toString().toLocaleLowerCase().replace(" ", "_"),
+                id: card._id,
+                isLiked: card.isLiked
             });
         }).
         catch(err => console.log(err)).
         finally(() =>{
             clearInterval(loadingAnimation);
-            popup.getSubmitButton().textContent = originalText;
-            popup.togglePopup();
+            getSubmitButton(popup).textContent = originalText;
+            newPostForm.reset();
+            disableButton(newPostForm);
+            togglePopup(popup);
         });
-    }
-});
-newPostForm.setEventListeners();
-document.querySelector(".profile__new-post").addEventListener("click", () => {
-    newPostForm.togglePopup();
-    newPostForm.disableSubmit();
-});
-new FormValidation(newPostForm.getPopupForm(), constants.formSelectors).enableValidation();
+    });
+}
 
-const editAvatarForm = new PopupWithForm(constants.editAvatarSelectors.editAvatarPopup, {
-    submit: (popup, evt, inputs) => {
-        evt.preventDefault();
-        const { loadingAnimation, originalText } = submitButtonText(popup);
-        api.editAvatar(inputs[0]).
-        then(res => editUserInfo(null, null, res.avatar)).
-        catch(err => console.log(err)).finally(() => {
-            clearInterval(loadingAnimation);
-            popup.getSubmitButton().textContent = originalText;
-            popup.togglePopup();
-        });
-    }
-});
-editAvatarForm.setEventListeners();
-document.querySelector(".profile__edit-avatar").addEventListener("click", () => {
-    editAvatarForm.togglePopup();
-    editAvatarForm.disableSubmit();
-});
-new FormValidation(editAvatarForm.getPopupForm(), constants.formSelectors).enableValidation();
+function setCloseButtonListeners() {
+    const closeButtons = document.querySelectorAll(".popup__close");
+
+    closeButtons.forEach((button) => {
+        const popup = button.closest(".popup");
+        button.addEventListener("click", () => togglePopup(popup));
+    });
+}
+
+setProfilePopupListeners();
+setAvatarPopupListeners();
+setDeleteCardPopupListeners();
+setNewPostPopupListeners();
+setCloseButtonListeners();
