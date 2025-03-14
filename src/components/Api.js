@@ -45,7 +45,8 @@ module.exports = class Api {
             return {
                 name: res.name,
                 link: res.link,
-                id: res._id
+                id: res._id,
+                isLiked: res.isLiked
             }
         })
     }

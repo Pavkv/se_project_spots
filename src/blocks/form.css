@@ -80,6 +80,7 @@
     }
 
     .form__input {
+        width: 276px;
         font-size: 1rem;
     }
 
