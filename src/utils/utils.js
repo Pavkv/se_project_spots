@@ -1,5 +1,4 @@
 const {profileSelectors} = require("./constants");
-const {disableButton} = require("../scripts/validation");
 
 const handleEscapeClose = (evt) => {
     if (evt.key === "Escape") {
@@ -53,9 +52,9 @@ const animateText = (button, text) => {
 };
 
 const submitButtonText = (button) => {
-    const originalText = button.textContent;
+    const originalText = button.textContent.trim();
     return {
-        loadingAnimation: animateText(button, originalText.slice(0, button.textContent.length - 1)),
+        loadingAnimation: animateText(button, originalText.substring(0, originalText.length - 1)),
         originalText
     };
 };
@@ -63,16 +62,18 @@ const submitButtonText = (button) => {
 const handleSubmit = (evt, popup, button, request) => {
     evt.preventDefault();
     const { loadingAnimation, originalText } = submitButtonText(button);
-    request().then(() => {
-        togglePopup(popup);
-        if (evt.submitter) {
-            evt.target.reset();
-        }
-    }).catch(err => console.log(err)).
-    finally(() => {
-        clearInterval(loadingAnimation);
-        button.textContent = originalText;
-    });
+    setTimeout(() => {
+        request().then(() => {
+            togglePopup(popup);
+            if (evt.submitter) {
+                evt.target.reset();
+            }
+        }).catch(err => console.log(err)).
+        finally(() => {
+            clearInterval(loadingAnimation);
+            button.textContent = originalText;
+        });
+    }, 3000);
 };
 
 module.exports = { editUserInfo, handleSubmit, togglePopup };
